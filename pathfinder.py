@@ -3,7 +3,7 @@ from time import sleep
 
 
 win = Tk()
-c = Canvas(width=900, height=900, bg = "blue")
+c = Canvas(width=900, height=900)
 gridsize = 25
 start = ()
 end = ()
@@ -87,27 +87,10 @@ for i in range(36):
     x = 0
     y = y + gridsize
 
-def plotStart(event):
+def plotStartEnd(event,pick):
     global start
-    x2 = event.x
-    while x2%gridsize != 0:
-        x2 += 1
-    x1 = x2 - gridsize
-
-    y2 = event.y
-
-    while y2%gridsize != 0:
-        y2 += 1
-    y1 = y2 - gridsize
-
-    c.create_rectangle(x1,y1,x2,y2,fill='#7ba659')
-    s = (x1+gridsize/2, y1+gridsize/2)
-    print(s)
-    start = s
-
-
-def plotEnd(event):
     global end
+
     x2 = event.x
     while x2%gridsize != 0:
         x2 += 1
@@ -118,11 +101,14 @@ def plotEnd(event):
         y2 += 1
     y1 = y2 - gridsize
 
-    c.create_rectangle(x1,y1,x2,y2,fill='#c63939')
-    e = (x1+gridsize/2, y1+gridsize/2)
-    print(e)
-    end = e
-
+    if pick == 'start':
+        c.create_rectangle(x1,y1,x2,y2,fill='#7ba659')
+        s = (x1+gridsize/2, y1+gridsize/2)
+        start = s
+    elif pick == 'end':
+        c.create_rectangle(x1,y1,x2,y2,fill='#c63939')
+        e = (x1+gridsize/2, y1+gridsize/2)
+        end = e
 
 def drawPath(event):
     x2 = event.x
@@ -154,8 +140,8 @@ button = Button(win, text='Start',fg='white', bg='#5852ad',command=start_path)
 button.pack(side=BOTTOM)
 
 win.bind("<B1-Motion>", drawPath)
-win.bind("<Control-Button-3>", plotEnd)
-win.bind("<Control-Button-1>", plotStart)
+win.bind("<Control-Button-3>", lambda e: plotStartEnd(event=e, pick='end'))
+win.bind("<Control-Button-1>", lambda e: plotStartEnd(event=e, pick='start'))
 
 c.pack()
 win.mainloop()

@@ -1,5 +1,5 @@
 # Pathfinder-Python
-A shortest path finding algorithm using BFS
+A shortest path finding visualizer using BFS algorithm
 
 Execution:
 

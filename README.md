@@ -9,3 +9,8 @@ You Can change this based on mouse prefrence, the code for changing is towards v
 Then create obstacles or road blocks by drag selecting the mouse across the grid.
 
 Hit start to run.
+
+Examples:
+![](images/img1.png)
+![](images/img2.png)
+![](images/img3.png)

@@ -145,5 +145,3 @@ win.bind("<Control-Button-1>", lambda e: plotStartEnd(event=e, pick='start'))
 
 c.pack()
 win.mainloop()
-
-################################################### GUI done ###################################################
